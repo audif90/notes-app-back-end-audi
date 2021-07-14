@@ -10,6 +10,7 @@ const NotesValidator = {
         if (validationResult.error) {
             throw new InvariantError(validationResult.error.message)
         }
+        console.log(validationResult)
     }
 };
 
