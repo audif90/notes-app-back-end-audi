@@ -55,7 +55,6 @@ class UsersHandler {
 
     async getUserByIdHandler(request, h) {
         try {
-
             const {
                 id
             } = request.params
@@ -68,7 +67,6 @@ class UsersHandler {
                     user,
                 }
             }
-
         } catch (error) {
             if (error instanceof ClientError) {
                 const response = h.response({

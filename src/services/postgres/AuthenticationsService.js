@@ -10,10 +10,15 @@ class AuthenticationsService {
 
     async addRefreshToken(token) {
         const query = {
-            text: 'INSERT INTO authentications VALUES($1)',
+            text: 'INSERT INTO authentications VALUES($1) returning TOKEN',
             values: [token]
         }
-        await this._pool.query(query)
+        const result = await this._pool.query(query)
+
+        if (!result.rows.length) {
+            throw new InvariantError('Refresh token tidak berhasil dimasukan')
+        }
+
     }
 
     async verifyRefreshToken(token) {
@@ -28,7 +33,7 @@ class AuthenticationsService {
         }
     }
 
-    async deleteRefreshToken (token) {
+    async deleteRefreshToken(token) {
         await this.verifyRefreshToken(token)
 
         const query = {

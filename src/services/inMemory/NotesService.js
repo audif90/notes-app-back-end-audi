@@ -14,7 +14,8 @@ class NotesService {
     addNote({
         title,
         body,
-        tags
+        tags,
+        owner
     }) {
         const id = nanoid(16)
         const createdAt = new Date().toISOString()
